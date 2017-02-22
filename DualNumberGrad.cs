@@ -27,7 +27,7 @@ namespace DualNumbers
         public static DualNumberGrad operator +(DualNumberGrad a, double b) => new DualNumberGrad(a.Value + b, a.Grad);
 
         public static DualNumberGrad operator -(DualNumberGrad a, DualNumberGrad b) => new DualNumberGrad(a.Value - b.Value, a.Grad - b.Grad);
-        public static DualNumberGrad operator -(double a, DualNumberGrad b) => new DualNumberGrad(a - b.Value, b.Grad);
+        public static DualNumberGrad operator -(double a, DualNumberGrad b) => new DualNumberGrad(a - b.Value, -b.Grad);
         public static DualNumberGrad operator -(DualNumberGrad a, double b) => new DualNumberGrad(a.Value - b, a.Grad);
 
         public static DualNumberGrad operator *(DualNumberGrad a, DualNumberGrad b)
