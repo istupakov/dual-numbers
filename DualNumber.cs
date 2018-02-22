@@ -19,7 +19,7 @@ namespace DualNumbers
 
         public static implicit operator DualNumber(double v) => new DualNumber(v);
 
-        public override string ToString() => $"f(t) = {Value}, f'(t) = {Diff}, f''(t) = {Diff2}";
+        public override string ToString() => $"f(t) = {Value}, f'(t) = {Diff}, f\"(t) = {Diff2}";
 
         #region Arithmetic Operators
 

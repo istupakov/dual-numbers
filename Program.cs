@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace DualNumbers
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main()
         {
             Console.WriteLine("Dual Numbers 1.0\n1D function must starts from 't =>'\n3D function must starts from 'p =>'");
             Console.WriteLine("Examples:\nSqrt(2*2)\nt => Sin(t)\nt => Vec(1, 2, t)\np => p^Vec(0, 0, 1)");
@@ -16,11 +17,11 @@ namespace DualNumbers
                 {
                     var code = ReadLine.Read("(prompt)> ");
                     if (code.StartsWith("t =>"))
-                        Func<DualNumber>(code);
+                        await Func<DualNumber>(code);
                     else if (code.StartsWith("p =>"))
-                        Func<DualVectorGrad>(code);
+                        await Func<DualVectorGrad>(code);
                     else
-                        Expr(code);
+                        await Expr(code);
                 }
                 catch (Exception ex)
                 {
@@ -37,29 +38,29 @@ namespace DualNumbers
             Console.ForegroundColor = oldColor;
         }
 
-        static void Expr(string code)
+        static async Task Expr(string code)
         {
-            var expr = Parser.Parse<object>(code);
+            var expr = await Parser.Parse<object>(code);
             Console.WriteLine(expr);
         }
 
-        static (bool, T) TryRead<T>()
+        static async Task<(bool, T)> TryRead<T>()
         {
             Console.Write($"Enter expr or 'q': ");
             var line = Console.ReadLine();
             if (line == "q")
-                return (true, default(T));
-            return (false, Parser.Parse<T>($"Variable({line})"));
+                return (true, default);
+            return (false, await Parser.Parse<T>($"Variable({line})"));
         }
 
-        static void Func<T>(string code)
+        static async Task Func<T>(string code)
         {
-            var f = Parser.Parse<Func<T, object>>(code);
+            var f = await Parser.Parse<Func<T, object>>(code);
             while (true)
             {
                 try
                 {
-                    var (exit, value) = TryRead<T>();
+                    var (exit, value) = await TryRead<T>();
                     if(exit)
                         return;
                     Console.WriteLine(f(value));

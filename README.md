@@ -1,7 +1,8 @@
 # Dual Numbers
 Calculator on C# with auto differentiation on dual numbers.
-For compilation need .NET Core SDK (RC4) or VS2017.
-Use Roslyn C# Scripts for expression parsing.
+Using Roslyn C# Scripts for expression parsing.
+
+For compilation need .NET Core SDK or VS2017.
 
 Some examples:
 ```

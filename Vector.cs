@@ -4,7 +4,7 @@ namespace DualNumbers
 {    
     public struct Vector
     {
-        public static Vector Zero => default(Vector);
+        public static Vector Zero => default;
 
         public double X { get; }
         public double Y { get; }

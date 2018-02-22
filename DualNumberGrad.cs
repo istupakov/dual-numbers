@@ -7,7 +7,7 @@ namespace DualNumbers
         public double Value { get; }
         public Vector Grad { get; }
 
-        public DualNumberGrad(double value, Vector grad = default(Vector))
+        public DualNumberGrad(double value, Vector grad = default)
         {
             Value = value;
             Grad = grad;
